@@ -1,0 +1,23 @@
+// Learn more about this file in the docs https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+enum MyOptions {
+  Option1
+  Option2
+  Option3
+}
+
+model MyTable {
+  id     String    @id @default(cuid())
+  name   String
+  option MyOptions @default(Option1)
+}
